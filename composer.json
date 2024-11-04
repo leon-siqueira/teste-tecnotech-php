@@ -1,0 +1,16 @@
+{
+    "name": "leon/teste-php",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Leon\\TestePhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Leon Siqueira",
+            "email": "leon.siqueir4@gmail.com"
+        }
+    ],
+    "require": {}
+}
