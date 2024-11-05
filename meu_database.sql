@@ -13,7 +13,7 @@ CREATE TABLE annuities (
   value DECIMAL(10,2) NOT NULL
 );
 
-CREATE TABLE payments (
+CREATE TABLE checkouts (
   id SERIAL PRIMARY KEY,
   is_paid BOOLEAN NOT NULL DEFAULT FALSE,
   annuity_year INT NOT NULL,

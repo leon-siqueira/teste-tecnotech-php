@@ -8,7 +8,7 @@ INSERT INTO annuities (year, value) VALUES
 (2020, 100.00),
 (2021, 100.00);
 
-INSERT INTO payments (is_paid, annuity_year, member_cpf) VALUES
+INSERT INTO checkouts (is_paid, annuity_year, member_cpf) VALUES
 (TRUE, 2020, '12345678901'),
 (TRUE, 2021, '12345678901'),
 (TRUE, 2020, '23456789012'),

@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
 
-class Payment
+class Checkout
 {
   private $mysqli;
   private $id;

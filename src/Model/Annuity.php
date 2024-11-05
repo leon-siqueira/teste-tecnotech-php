@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Model\Payment;
+use App\Model\Checkout;
 
 class Annuity
 {
@@ -24,16 +24,16 @@ class Annuity
     return $this->value;
   }
 
-  public function getPayments() {
-    $stmt = $this->mysqli->prepare("SELECT * FROM payments WHERE annuity_year = ?");
+  public function getCheckouts() {
+    $stmt = $this->mysqli->prepare("SELECT * FROM checkouts WHERE annuity_year = ?");
     $stmt->bind_param("i", $this->year);
     $stmt->execute();
     $result = $stmt->get_result();
-    $payments = [];
+    $checkouts = [];
     while ($row = $result->fetch_assoc()) {
-        $payments[] = new Payment($this->mysqli, $row);
+        $checkouts[] = new Checkout($this->mysqli, $row);
     }
     $stmt->close();
-    return $payments;
+    return $checkouts;
   }
 }

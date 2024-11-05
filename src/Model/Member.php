@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Model\Payment;
+use App\Model\Checkout;
 
 class Member
 {
@@ -36,22 +36,22 @@ class Member
     return $this->filiation_date;
   }
 
-  public function getPayments() {
-    $stmt = $this->mysqli->prepare("SELECT * FROM payments WHERE member_cpf = ?");
+  public function getCheckouts() {
+    $stmt = $this->mysqli->prepare("SELECT * FROM checkouts WHERE member_cpf = ?");
     $stmt->bind_param("s", $this->cpf);
     $stmt->execute();
-    $payment_results = $stmt->get_result()->fetch_all();
-    $payments = [];
-    foreach ($payment_results as $result) {
+    $checkout_results = $stmt->get_result()->fetch_all();
+    $checkouts = [];
+    foreach ($checkout_results as $result) {
       $data = [
         'id' => $result[0],
         'is_paid' => $result[1],
         'annuity_year' => $result[2],
         'member_cpf' => $result[3]
       ];
-      $payments[] = new Payment($this->mysqli, $data);
+      $checkouts[] = new Checkout($this->mysqli, $data);
     }
     $stmt->close();
-    return $payments;
+    return $checkouts;
   }
 }
