@@ -18,6 +18,6 @@ CREATE TABLE payments (
   is_paid BOOLEAN NOT NULL DEFAULT FALSE,
   annuity_year INT NOT NULL,
   member_cpf VARCHAR(11) NOT NULL,
-  FOREIGN KEY (annuity_year) REFERENCES annuities(year),
-  FOREIGN KEY (member_cpf) REFERENCES members(cpf)
+  FOREIGN KEY (annuity_year) REFERENCES annuities(year) ON DELETE CASCADE,
+  FOREIGN KEY (member_cpf) REFERENCES members(cpf) ON DELETE CASCADE
 );
