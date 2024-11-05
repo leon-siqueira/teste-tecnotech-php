@@ -3,7 +3,7 @@
         'name' => 'leon/teste-php',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '15a2c93c70875e0202cc7268dd99955ad41812dd',
+        'reference' => 'b42cb756507b77d93cabd22be444fe95e3899912',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'leon/teste-php' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '15a2c93c70875e0202cc7268dd99955ad41812dd',
+            'reference' => 'b42cb756507b77d93cabd22be444fe95e3899912',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
