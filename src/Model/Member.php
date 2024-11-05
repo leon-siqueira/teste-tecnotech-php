@@ -40,16 +40,10 @@ class Member
     $stmt = $this->mysqli->prepare("SELECT * FROM checkouts WHERE member_cpf = ?");
     $stmt->bind_param("s", $this->cpf);
     $stmt->execute();
-    $checkout_results = $stmt->get_result()->fetch_all();
+    $result = $stmt->get_result();
     $checkouts = [];
-    foreach ($checkout_results as $result) {
-      $data = [
-        'id' => $result[0],
-        'is_paid' => $result[1],
-        'annuity_year' => $result[2],
-        'member_cpf' => $result[3]
-      ];
-      $checkouts[] = new Checkout($this->mysqli, $data);
+    while ($row = $result->fetch_assoc()) {
+      $checkouts[] = new Checkout($this->mysqli, $row);
     }
     $stmt->close();
     return $checkouts;
