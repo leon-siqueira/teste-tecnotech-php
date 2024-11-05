@@ -6,7 +6,7 @@ use App\Database\Connection;
 use App\Model\Member;
 use App\Model\Annuity;
 
-$connection = new App\Database\Connection();
+$connection = new Connection();
 $mysqli = $connection->get();
 
 if ($mysqli->connect_error) {
