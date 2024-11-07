@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
-use App\Model\Checkout;
+use App\Models\Checkout;
 
 class Annuity
 {
