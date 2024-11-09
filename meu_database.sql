@@ -1,11 +1,12 @@
 CREATE DATABASE IF NOT EXISTS db_teste_leon;
+
 USE db_teste_leon;
 
 CREATE TABLE members (
   cpf VARCHAR(11) PRIMARY KEY,
   name  VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
-  filiation_date DATE NOT NULL
+  filiation_date DATE NOT NULL DEFAULT (CURRENT_DATE)
 );
 
 CREATE TABLE annuities (

@@ -10,23 +10,23 @@ This project is a PHP application that tracks the annuity payments of members in
 
 ## Installation
 
-1. Clone the repository:
+### 1. Clone the repository:
 
 ```sh
 git clone https://github.com/leon-siqueira/teste-tecnotech-php.git
 cd teste-tecnotech-php
 ```
 
-2. Install dependencies:
+### 2. Install dependencies:
 
 ```sh
 composer install
 ```
 
-3. Install MySQL:
+### 3. Install MySQL:
    Follow the instructions for your operating system to install MySQL. Ensure that the MySQL server is running.
 
-4. Set up the `.env` file:
+### 4. Set up the `.env` file:
    Copy the `.env.example` file to `.env` and update the necessary environment variables, such as database connection details:
 
 ```sh
@@ -41,10 +41,33 @@ DB_USER=<your_db_username>
 DB_PASS=<your_db_password>
 ```
 
-5. Run the SQL scripts from the `meu_database.sql` file to create the schema and seed it with data by running the `seeder.sql` SQL script
+### 5. Create the database and seed it:
+
+- #### Manual method
+Run the SQL scripts from the `meu_database.sql` file to create the schema and seed it with data by running the `seeder.sql` SQL script
 
 ```sh
 mysql -u <your_db_username> -p<your_db_password> < meu_database.sql; mysql -u <your_db_username> -p<your_db_password> < seeder.sql
+```
+
+- #### Scripted method
+
+Copy the `seed.sh.example`
+
+```sh
+cp seed.sh.example seed.sh
+```
+
+Open the `seed.sh` file in a text editor and change the following variables to their actual value, corresponding to your MySQL credentials:
+
+```sh
+DB_USER=<your_db_username>
+DB_PASS=<your_db_password>
+```
+
+Run the script
+```sh
+sh seed.sh
 ```
 
 ## Usage
