@@ -3,32 +3,33 @@
 namespace App\Models;
 
 use App\Models\Checkout;
+use App\Core\Connection;
+use App\Core\Model;
 
-class Annuity
+class Annuity extends Model
 {
-  private $mysqli;
   private $year;
   private $value;
+  protected static $TABLE_NAME = 'annuities';
+  protected static $PRIMARY_KEY = 'year';
 
-  public function __construct($mysqli, $data) {
-    $this->mysqli = $mysqli;
+  public function __construct($data = []) {
     $this->year = $data['year'];
     $this->value = $data['value'];
   }
 
-  public function getYear() {
+  public function get_year() {
     return $this->year;
   }
 
-  public function getValue() {
+  public function get_yalue() {
     return $this->value;
   }
 
-  public function getCheckouts() {
-    $stmt = $this->mysqli->prepare("SELECT * FROM checkouts WHERE annuity_year = ?");
-    $stmt->bind_param("i", $this->year);
-    $stmt->execute();
-    $result = $stmt->get_result();
+  public function get_checkouts() {
+    $conn = new Connection();
+    $query = $conn->query("SELECT * FROM checkouts WHERE annuity_year = ?", [$this->year]);
+    $result = $query->get_result();
     $checkouts = [];
     while ($row = $result->fetch_assoc()) {
         $checkouts[] = new Checkout($this->mysqli, $row);
