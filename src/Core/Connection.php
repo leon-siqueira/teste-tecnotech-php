@@ -29,7 +29,6 @@ class Connection
 
   public function query(string $query, array $params = [])
   {
-    error_log($query);
     $stmt = $this->mysqli->prepare($query);
     if ($stmt === false) {
         throw new \Exception('Failed to prepare statement: ' . $this->mysqli->error);
@@ -48,7 +47,7 @@ class Connection
               $types .= 'b';
           }
       }
-      $stmt->bind_param($types, ...$params);
+      $stmt->bind_param($types, ...array_values($params));
     }
 
     $stmt->execute();
