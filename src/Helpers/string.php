@@ -6,6 +6,6 @@ class StringHelper
 {
   static function sanitize_cpf($string)
   {
-    return str_replace(['.', '-'], '');
+    return str_replace(['.', '-'], '', $string);
   }
 }
