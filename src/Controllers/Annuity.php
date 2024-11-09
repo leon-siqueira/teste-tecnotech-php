@@ -23,9 +23,8 @@ class AnnuityController extends Controller
   }
 
   public function create() {
-    $annuity = new Annuity();
-    $sanitized_params = $this->permit_params($_POST, ['year','value']);
-    $success = $annuity->create($sanitized_params);
+    $annuity = new Annuity($_POST);
+    $success = $annuity->create($annuity->attributes());
     if ($success) {
       $this->redirect('/annuity/index');
     } else {
