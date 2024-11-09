@@ -16,7 +16,7 @@ class Controller
       exit();
   }
 
-  protected function not_found($first = false)
+  public function not_found()
   {
     $this->view('not_found');
   }
