@@ -12,6 +12,12 @@
     <li>
       <a href="/annuity/index">List Annuities</a>
     </li>
+    <li>
+      <a href="/member/new">New Member</a>
+    </li>
+    <li>
+      <a href="/member/index">List Members</a>
+    </li>
   </ul>
   <?php
     require '../vendor/autoload.php';

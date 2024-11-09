@@ -3,21 +3,23 @@
 namespace App\Models;
 
 use App\Models\Checkout;
+use App\Core\Model;
+use App\Helpers\StringHelper;
 
-class Member
+class Member extends Model
 {
-  private $mysqli;
-  private $cpf;
-  private $name;
-  private $email;
-  private $filiation_date;
+  private string $cpf;
+  private string $name;
+  private string $email;
+  private DateTime $filiation_date;
+  protected static $TABLE_NAME = 'members';
+  protected static $PRIMARY_KEY = 'cpf';
 
-  public function __construct($mysqli, $data) {
-    $this->mysqli = $mysqli;
-    $this->cpf = $data['cpf'];
+  public function __construct($data) {
+    $this->cpf = StringHelper::sanitize_cpf($data['cpf']);
     $this->name = $data['name'];
     $this->email = $data['email'];
-    $this->filiation_date = $data['filiation_date'];
+    $this->filiation_date = new DateTime($data['filiation_date']);
   }
 
   public function getCpf() {
