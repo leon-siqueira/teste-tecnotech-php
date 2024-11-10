@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
-</head>
-<body>
-  Welcome to the home page
-</body>
-</html>
+<?php
+  $title = 'Home';
+  require __DIR__.'/layout.php';
+?>
+Welcome to the home page
