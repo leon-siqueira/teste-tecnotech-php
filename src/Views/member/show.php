@@ -6,13 +6,14 @@
   <title>Member - <?= $data['member']['name'] ?></title>
 </head>
 <body>
+  <?php use App\Libs\StringHelper; ?>
   <h1>Member - <?= $data['member']['name'] ?></h1>
   <ul>
     <li>
       <a href="/member/edit/<?= $data['member']['cpf'] ?>">Edit</a>
     </li>
     <li>
-      <a href="/member/delete/<?= $data['member']['cpf'] ?>">Delete</a>
+      <a href="/member/destroy/<?= $data['member']['cpf'] ?>">Delete</a>
     </li>
   </ul>
   <p>
@@ -22,10 +23,10 @@
     <strong>Email:</strong> <?= $data['member']['email'] ?>
   </p>
   <p>
-    <strong>CPF:</strong> <?= $data['member']['cpf'] ?>
+    <strong>CPF:</strong> <?= StringHelper::mask_cpf($data['member']['cpf']) ?>
   </p>
   <p>
-    <strong>Filiation date:</strong> <?= $data['member']['filiation_date'] ?>
+    <strong>Filiation date:</strong> <?= date('d/m/Y', strtotime($data['member']['filiation_date'])) ?>
   </p>
 </body>
 </html>

@@ -12,9 +12,9 @@ class Model
 
   public function create(array $params) {
     $conn = new Connection();
-    error_log(print_r($params, true));
     $query = "INSERT INTO " . static::$TABLE_NAME . " (" . $this->fields_list($params) . ") VALUES (" . $this->question_marks($params) . ")";
     $stmt = $conn->query($query, $params);
+    // TODO: change the object to the created object
     return $stmt->affected_rows === 1;
   }
 
@@ -30,6 +30,7 @@ class Model
     $query = "UPDATE " . static::$TABLE_NAME . " SET " . $this->fields_to_set($params) . " WHERE " . static::$PRIMARY_KEY . " = ?";
     $params[] = call_user_func([$this, 'get_' . static::$PRIMARY_KEY]);
     $stmt = $conn->query($query, $params);
+    // TODO: change the object to the created object
     return $stmt->affected_rows === 1;
   }
 

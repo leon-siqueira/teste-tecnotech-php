@@ -22,9 +22,11 @@ class MemberController extends Controller
   }
 
   public function create() {
+    $_POST['filiation_date'] = date('Y-m-d');
     $member = new Member($_POST);
     $success = $member->create($member->attributes());
     if ($success) {
+      // TODO: Associate to this year's annuity
       $this->redirect('/member/index');
     } else {
       $this->view('member/new', ['member' => $_POST]);
