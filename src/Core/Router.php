@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Libs\PathsHelper;
+
 class Router
 {
   protected $controller = 'Home';
@@ -19,13 +21,13 @@ class Router
   private function get_controller_from_url($url)
   {
     if ( !empty($url[0]) && isset($url[0]) ) {
-      if ( file_exists(substr($_SERVER['DOCUMENT_ROOT'], 0, -7) . '/src/Controllers/'  . ucfirst($url[0])  . '.php') ) {
+      if ( file_exists(PathsHelper::root() . '/src/Controllers/'  . ucfirst($url[0])  . '.php') ) {
         $this->controller = ucfirst($url[0]);
       } else {
         $this->method = 'not_found';
       }
     }
-    require substr($_SERVER['DOCUMENT_ROOT'], 0, -7) . '/src/Controllers/' . $this->controller . '.php';
+    require PathsHelper::root() . '/src/Controllers/' . $this->controller . '.php';
     $this->controller = 'App\Controllers\\' . $this->controller . 'Controller';
     $this->controller = new $this->controller();
   }

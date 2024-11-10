@@ -2,11 +2,13 @@
 
 namespace App\Core;
 
+use App\Libs\PathsHelper;
+
 class Controller
 {
   protected function view(string $view, array $data = [])
   {
-    require substr($_SERVER['DOCUMENT_ROOT'], 0, -7) . '/src/Views/' . $view . '.php';
+    require PathsHelper::root() . '/src/Views/' . $view . '.php';
   }
 
   protected function redirect($uri, $statusCode = 302)
