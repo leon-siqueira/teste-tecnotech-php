@@ -29,29 +29,36 @@ class Connection
 
   public function query(string $query, array $params = [])
   {
-    $stmt = $this->mysqli->prepare($query);
-    if ($stmt === false) {
-        throw new \Exception('Failed to prepare statement: ' . $this->mysqli->error);
-    }
-
-    if ($params) {
-      $types = '';
-      foreach ($params as $param) {
-          if (is_int($param)) {
-              $types .= 'i';
-          } elseif (is_float($param)) {
-              $types .= 'd';
-          } elseif (is_string($param)) {
-              $types .= 's';
-          } else {
-              $types .= 'b';
-          }
+    try {
+      $stmt = $this->mysqli->prepare($query);
+      if ($stmt === false) {
+          throw new \Exception('Failed to prepare statement: ' . $this->mysqli->error);
       }
-      $stmt->bind_param($types, ...array_values($params));
-    }
 
-    $stmt->execute();
-    return $stmt;
+      if ($params) {
+        $types = '';
+        foreach ($params as $param) {
+            if (is_int($param)) {
+                $types .= 'i';
+            } elseif (is_float($param)) {
+                $types .= 'd';
+            } elseif (is_string($param)) {
+                $types .= 's';
+            } else {
+                $types .= 'b';
+            }
+        }
+        $stmt->bind_param($types, ...array_values($params));
+      }
+
+      $stmt->execute();
+      return $stmt;
+    } catch (\Throwable $th) {
+      error_log("Error on query: " . $query);
+      error_log("With params: " . print_r($params, true));
+      error_log("ERROR MESSAGE: " . $th->getMessage());
+      return false;
+    }
   }
 
   public function close() {
