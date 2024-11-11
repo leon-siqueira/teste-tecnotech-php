@@ -14,13 +14,13 @@
       <a class="navbar-brand fs-2 fw-bold" href="/">Home</a>
       <ul class="navbar-nav my-1 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/annuity/index">Annuities</a>
+          <a class="nav-link" href="/annuity">Annuities</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/member/index">Members</a>
+          <a class="nav-link" href="/member">Members</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/payments/index">Payments</a>
+          <a class="nav-link" href="/payments">Payments</a>
         </li>
       </ul>
     </div>
