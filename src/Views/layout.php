@@ -20,7 +20,7 @@
           <a class="nav-link" href="/member">Members</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/payments">Payments</a>
+          <a class="nav-link" href="/checkout">Checkouts</a>
         </li>
       </ul>
     </div>
