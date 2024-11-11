@@ -1,11 +1,18 @@
 <?php
-  $title = 'Edit member';
+  $title = 'Edit Member';
   use App\Libs\PathsHelper;
   require PathsHelper::layout();
 ?>
 <div class="container-fluid p-4">
   <form action="/member/update/<?= $data['member']['cpf'] ?>" method="post">
-    <legend>New Member</legend>
+    <div class="row justify-content-between">
+      <div class="col-4">
+        <legend>Edit Member</legend>
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        <a class="btn btn-danger" href="/member/destroy/<?= $data['member']['cpf'] ?>">Delete</a>
+      </div>
+    </div>
     <div class="row">
       <div class="mb-3 col-sm-6">
         <label for="name" class="form-label">Name</label>
