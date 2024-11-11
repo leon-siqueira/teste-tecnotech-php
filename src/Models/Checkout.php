@@ -1,35 +1,41 @@
 <?php
 namespace App\Models;
 
-class Checkout
+use App\Core\Model;
+
+class Checkout extends Model
 {
-  private $mysqli;
   private $id;
   private $is_paid;
   private $annuity_year;
   private $member_cpf;
+  protected static $TABLE_NAME = 'checkouts';
+  protected static $PRIMARY_KEY = 'id';
 
-  public function __construct($mysqli, $data) {
-    $this->mysqli = $mysqli;
+  public function __construct($data) {
     $this->id = $data['id'];
-    $this->is_paid = ($data['is_paid'] === 1 ? True : False);
+    if (isset($data['is_paid'])) {
+      $this->is_paid = $data['is_paid'];
+    } else {
+      $this->is_paid = 0;
+    }
     $this->annuity_year = $data['annuity_year'];
     $this->member_cpf = $data['member_cpf'];
   }
 
-  public function getId() {
+  public function get_id() {
     return $this->id;
   }
 
-  public function getMemberCpf() {
+  public function get_member_cpf() {
     return $this->member_cpf;
   }
 
-  public function getAnnuityYear() {
+  public function get_annuity_year() {
     return $this->annuity_year;
   }
 
-  public function getIsPaid() {
+  public function get_is_paid() {
     return $this->is_paid;
   }
 }
