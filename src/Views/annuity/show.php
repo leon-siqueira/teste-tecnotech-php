@@ -26,5 +26,4 @@
 
   <a class="btn btn-secondary" href="/annuity">Back</a>
   <a class="btn btn-primary" href=<?= "/annuity/edit/" . $data['annuity']['year'] ?>>Edit</a>
-  <a class="btn btn-danger" href="/annuity/destroy/<?= $data['annuity']['year'] ?>">Delete</a>
 </div>

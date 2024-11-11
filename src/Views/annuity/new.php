@@ -3,11 +3,20 @@
   use App\Libs\PathsHelper;
   require PathsHelper::layout();
 ?>
-<h1>New Annuity</h1>
-<form action="/annuity/create" method="post">
-  <label for="year">Year</label>
-  <input type="text" name="year" id="year" value="<?= $data['annuity']['year'] ?>" >
-  <label for="value">Value</label>
-  <input type="text" name="value" id="value" value="<?= $data['annuity']['value']?>" >
-  <button type="submit">Create</button>
-</form>
+<div class="container-fluid p-4">
+  <form action="/annuity/create" method="post">
+    <legend>New Annuity</legend>
+    <div class="row">
+      <div class="mb-3 col-sm-6">
+        <label for="year" class="form-label">Year</label>
+        <input type="text" class="form-control" id="year" name="year" value="<?= $data['annuity']['year'] ?>">
+      </div>
+      <div class="mb-3 col-sm-6">
+        <label for="value" class="form-label">Value</label>
+        <input type="text" class="form-control" id="value" name="value" value="<?= $data['annuity']['value'] ?>">
+      </div>
+    </div>
+    <a class="btn btn-secondary" href="/annuity">Back</a>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>
