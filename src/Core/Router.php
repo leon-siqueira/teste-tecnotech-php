@@ -13,8 +13,10 @@ class Router
   public function __construct() {
     $URL_ARRAY = explode('/', substr(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 1));
     $this->get_controller_from_url($URL_ARRAY);
-    $this->get_method_from_url($URL_ARRAY);
-    $this->get_params_from_url($URL_ARRAY);
+    if ($this->method != 'not_found') {
+      $this->get_method_from_url($URL_ARRAY);
+      $this->get_params_from_url($URL_ARRAY);
+    }
     call_user_func_array([$this->controller, $this->method], $this->params);
   }
 
