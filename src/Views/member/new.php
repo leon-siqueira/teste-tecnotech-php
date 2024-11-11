@@ -1,14 +1,28 @@
 <?php
-  $title = 'New member';
+  $title = 'New Member';
   use App\Libs\PathsHelper;
   require PathsHelper::layout();
 ?>
-<form action="/member/create/<?= $data['member']['cpf'] ?>" method="post">
-  <label for="name">Name</label>
-  <input type="text" name="name" id="name" value="<?= $data['member']['name'] ?>">
-  <label for="email">Email</label>
-  <input type="email" name="email" id="email" value="<?= $data['member']['email'] ?>">
-  <label for="cpf">CPF</label>
-  <input type="text" name="cpf" id="cpf" value="<?= $data['member']['cpf'] ?>">
-  <button type="submit">Create</button>
-</form>
+<div class="container-fluid p-4">
+  <form action="/member/create" method="post">
+    <legend>New Member</legend>
+    <div class="row">
+      <div class="mb-3 col-sm-6">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="<?= $data['member']['name'] ?>">
+      </div>
+      <div class="mb-3 col-sm-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" name="email" value="<?= $data['member']['email'] ?>">
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-sm-6">
+        <label for="cpf" class="form-label">CPF</label>
+        <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $data['member']['cpf'] ?>">
+      </div>
+    </div>
+    <a class="btn btn-secondary" href="/member">Back</a>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+</div>
