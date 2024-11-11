@@ -18,8 +18,8 @@
     </div>
   </div>
   <div class="row justify-content-center pt-4">
-    <div class="col-md-8 table-responsive">
-      <table class="table table-dark table-striped align-middle">
+    <div class="col-md-10 table-responsive">
+      <table class="table table-striped align-middle">
         <thead>
           <tr>
             <th scope="col">Year</th>
@@ -32,7 +32,7 @@
             <tr>
               <td><?= $annuity['year'] ?></td>
               <td><?= $annuity['value'] ?></td>
-              <td class="d-flex justify-content-end" >
+              <td class="justify-content-end button-column" >
                 <a href="/annuity/show/<?= $annuity['year'] ?>" class="btn btn-sm btn-secondary">
                   <i class="bi bi-eye"></i>
                   Show
