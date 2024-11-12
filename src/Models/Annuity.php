@@ -22,7 +22,7 @@ class Annuity extends Model
     return $this->year;
   }
 
-  public function get_yalue() {
+  public function get_value() {
     return $this->value;
   }
 
