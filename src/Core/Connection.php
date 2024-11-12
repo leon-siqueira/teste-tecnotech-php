@@ -35,7 +35,10 @@ class Connection
           throw new \Exception('Failed to prepare statement: ' . $this->mysqli->error);
       }
 
+      error_log("Query: " . $query);
+
       if ($params) {
+        error_log("With params: " . print_r($params, true));
         $types = '';
         foreach ($params as $param) {
             if (is_int($param)) {
@@ -55,7 +58,6 @@ class Connection
       return $stmt;
     } catch (\Throwable $th) {
       error_log("Error on query: " . $query);
-      error_log("With params: " . print_r($params, true));
       error_log("ERROR MESSAGE: " . $th->getMessage());
       return false;
     }
