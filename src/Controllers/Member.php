@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Core\Connection;
 use App\Models\Annuity;
 use App\Models\Checkout;
 use App\Models\Member;
@@ -58,5 +59,16 @@ class MemberController extends Controller
   public function destroy($id) {
     $success = Member::destroy($id);
     $this->redirect('/member/index');
+  }
+
+  public function debtors() {
+    $conn = new Connection();
+    $query = $conn->query('SELECT * FROM members WHERE cpf IN (SELECT member_cpf FROM checkouts WHERE is_paid = 0)');
+    $result = $query->get_result();
+    $members = [];
+    while ($row = $result->fetch_assoc()) {
+      $members[] = $row;
+    }
+    $this->view('member/debtors', ['members' => $members]);
   }
 }

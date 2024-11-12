@@ -64,7 +64,11 @@
         <?php endforeach; ?>
       </table>
     </div>
-    Total owed: <?= number_format($owed_total, 2) ?>
+    <div class="col">
+      <div class="alert alert-warning" role="alert">
+        <strong class="me-2">Total Owed:</strong><?= number_format($owed_total, 2) ?>
+      </div>
+    </div>
   </div>
   <?php endif; ?>
 

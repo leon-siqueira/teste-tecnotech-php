@@ -5,3 +5,7 @@
 .button-column{
   width: 5.5rem;
 }
+
+.same-width-button{
+  width: 8rem;
+}
