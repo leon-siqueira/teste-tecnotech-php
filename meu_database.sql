@@ -6,7 +6,8 @@ CREATE TABLE members (
   cpf VARCHAR(11) PRIMARY KEY,
   name  VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
-  filiation_date DATE NOT NULL DEFAULT (CURRENT_DATE)
+  filiation_date DATE NOT NULL DEFAULT (CURRENT_DATE),
+  CONSTRAINT cpf_format CHECK (cpf REGEXP '^[0-9]{11}$')
 );
 
 CREATE TABLE annuities (
