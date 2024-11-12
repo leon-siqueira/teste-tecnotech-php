@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Models\Annuity;
+use App\Models\Checkout;
 use App\Models\Member;
 
 class MemberController extends Controller
@@ -22,11 +24,15 @@ class MemberController extends Controller
   }
 
   public function create() {
-    $_POST['filiation_date'] = date('Y-m-d');
+    $_POST['filiation_date'] = $_POST['filiation_date'] ?? date('Y-m-d');
     $member = new Member($_POST);
     $success = $member->create($member->attributes());
     if ($success) {
-      // TODO: Associate to this year's annuity
+      $annuity = Annuity::find(date('Y'));
+      if ($annuity) {
+        $checkout = new Checkout(['annuity_year' => $annuity->get_year(), 'member_cpf' => $member->get_cpf()]);
+        $checkout->create($checkout->attributes());
+      }
       $this->redirect('/member/index');
     } else {
       $this->view('member/new', ['member' => $_POST]);
