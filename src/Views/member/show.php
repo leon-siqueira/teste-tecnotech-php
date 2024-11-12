@@ -44,7 +44,7 @@
       <table class="table table-striped align-middle">
         <thead>
           <tr>
-            <th scope="col" colspan=2 class="fs-3">Pending Checkouts</th>
+            <th scope="col" colspan=2>Pending Checkouts</th>
           </tr>
         </thead>
         <tr>
