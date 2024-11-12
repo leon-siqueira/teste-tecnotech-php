@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Libs\StringHelper;
 use App\Models\Checkout;
+use App\Models\Annuity;
+use App\Core\Connection;
 use App\Core\Model;
 
 class Member extends Model
@@ -40,15 +42,33 @@ class Member extends Model
   }
 
   public function get_checkouts() {
-    $stmt = $this->mysqli->prepare("SELECT * FROM checkouts WHERE member_cpf = ?");
-    $stmt->bind_param("s", $this->cpf);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $conn = new Connection();
+    $query = $conn->query('SELECT * FROM checkouts WHERE member_cpf = ?', [$this->cpf]);
+    $result = $query->get_result();
     $checkouts = [];
     while ($row = $result->fetch_assoc()) {
-      $checkouts[] = new Checkout($this->mysqli, $row);
+      $checkouts[] = new Checkout($row);
     }
-    $stmt->close();
     return $checkouts;
+  }
+
+  public function pending_checkouts() {
+    $conn = new Connection();
+    $query = $conn->query('SELECT * FROM checkouts WHERE member_cpf = ? AND is_paid = 0', [$this->cpf]);
+    $result = $query->get_result();
+    $checkouts = [];
+    while ($row = $result->fetch_assoc()) {
+      $checkouts[] = new Checkout($row);
+    }
+    return $checkouts;
+  }
+
+  public function owed_total() {
+    $checkouts = $this->pending_checkouts();
+    $owed_total = 0;
+    foreach ($checkouts as $checkout) {
+      $owed_total += Annuity::find($checkout->get_annuity_year())->get_value();
+    }
+    return $owed_total;
   }
 }
