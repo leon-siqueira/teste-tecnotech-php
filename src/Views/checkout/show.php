@@ -20,7 +20,12 @@
         <tr>
           <th class="property-name">Is Paid?</th>
           <td>
-            <?= $data['checkout']['is_paid'] ? 'Yes' : 'No' ?>
+            <div class="d-flex justify-content-between align-items-center">
+              <?= $data['checkout']['is_paid'] ? 'Yes' : 'No' ?>
+              <?php if (!$data['checkout']['is_paid']): ?>
+                <a class="btn btn-sm btn-success" href=<?= "/checkout/pay/" . $data['checkout']['id'] ?>>Pay</a>
+              <?php endif; ?>
+            </div>
           </td>
         </tr>
         <tr>

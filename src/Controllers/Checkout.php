@@ -17,6 +17,14 @@ class CheckoutController extends Controller
     $this->view('checkout/show', ['checkout' => $checkout]);
   }
 
+  public function pay($id) {
+    $checkout = Checkout::find($id);
+    if ($checkout->get_is_paid() == 0) {
+      $checkout->update(['is_paid' => 1]);
+    }
+    $this->redirect('/checkout/show/'.$id);
+  }
+
   public function new() {
     $this->view('checkout/new');
   }
